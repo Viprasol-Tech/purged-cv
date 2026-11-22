@@ -1,0 +1,73 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "purged-cv"
+version = "0.1.0"
+description = "Leak-free cross-validation for financial ML: purged K-fold, embargo, combinatorial purged CV (CPCV) and purged walk-forward. Zero dependencies, scikit-learn compatible."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Viprasol Tech Private Limited", email = "support@viprasol.com" }]
+keywords = [
+    "purged-k-fold",
+    "combinatorial-purged-cross-validation",
+    "cpcv",
+    "embargo",
+    "cross-validation",
+    "financial-machine-learning",
+    "quant",
+    "scikit-learn",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Financial and Insurance Industry",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Office/Business :: Financial :: Investment",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Typing :: Typed",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.5,<0.16",
+    "mypy>=1.10",
+    "pytest>=8.0",
+    "scikit-learn>=1.4",
+]
+
+[project.urls]
+Homepage = "https://github.com/Viprasol-Tech/purged-cv"
+Repository = "https://github.com/Viprasol-Tech/purged-cv"
+Issues = "https://github.com/Viprasol-Tech/purged-cv/issues"
+Website = "https://viprasol.com"
+
+[project.scripts]
+purgedcv = "purged_cv.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/purged_cv"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "C4", "RUF"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+pythonpath = ["src"]
